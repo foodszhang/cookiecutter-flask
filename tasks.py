@@ -7,12 +7,14 @@ from invoke import task, run
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 # Match default value of app_name from cookiecutter.json
-COOKIE = os.path.join(HERE, 'myflaskapp')
+COOKIE = os.path.join(HERE, 'pp')
 REQUIREMENTS = os.path.join(COOKIE, 'requirements', 'dev.txt')
+
 
 @task
 def build():
     run('cookiecutter {0} --no-input'.format(HERE))
+
 
 @task
 def clean():
@@ -21,6 +23,7 @@ def clean():
         print('Removed {0}'.format(COOKIE))
     else:
         print('App directory does not exist. Skipping.')
+
 
 @task(pre=[clean, build])
 def test():
